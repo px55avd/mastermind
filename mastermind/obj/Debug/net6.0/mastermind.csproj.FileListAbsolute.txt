@@ -1,0 +1,15 @@
+D:\P-prog Melly\mastermind\mastermind\bin\Debug\net6.0\mastermind.exe
+D:\P-prog Melly\mastermind\mastermind\bin\Debug\net6.0\mastermind.deps.json
+D:\P-prog Melly\mastermind\mastermind\bin\Debug\net6.0\mastermind.runtimeconfig.json
+D:\P-prog Melly\mastermind\mastermind\bin\Debug\net6.0\mastermind.dll
+D:\P-prog Melly\mastermind\mastermind\bin\Debug\net6.0\mastermind.pdb
+D:\P-prog Melly\mastermind\mastermind\obj\Debug\net6.0\mastermind.csproj.AssemblyReference.cache
+D:\P-prog Melly\mastermind\mastermind\obj\Debug\net6.0\mastermind.GeneratedMSBuildEditorConfig.editorconfig
+D:\P-prog Melly\mastermind\mastermind\obj\Debug\net6.0\mastermind.AssemblyInfoInputs.cache
+D:\P-prog Melly\mastermind\mastermind\obj\Debug\net6.0\mastermind.AssemblyInfo.cs
+D:\P-prog Melly\mastermind\mastermind\obj\Debug\net6.0\mastermind.csproj.CoreCompileInputs.cache
+D:\P-prog Melly\mastermind\mastermind\obj\Debug\net6.0\mastermind.dll
+D:\P-prog Melly\mastermind\mastermind\obj\Debug\net6.0\refint\mastermind.dll
+D:\P-prog Melly\mastermind\mastermind\obj\Debug\net6.0\mastermind.pdb
+D:\P-prog Melly\mastermind\mastermind\obj\Debug\net6.0\mastermind.genruntimeconfig.cache
+D:\P-prog Melly\mastermind\mastermind\obj\Debug\net6.0\ref\mastermind.dll

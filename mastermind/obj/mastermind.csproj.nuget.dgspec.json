@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\C#\\ConsoleApp2\\mastermind\\mastermind.csproj": {}
+    "D:\\P-prog Melly\\mastermind\\mastermind\\mastermind.csproj": {}
   },
   "projects": {
-    "D:\\C#\\ConsoleApp2\\mastermind\\mastermind.csproj": {
+    "D:\\P-prog Melly\\mastermind\\mastermind\\mastermind.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\C#\\ConsoleApp2\\mastermind\\mastermind.csproj",
+        "projectUniqueName": "D:\\P-prog Melly\\mastermind\\mastermind\\mastermind.csproj",
         "projectName": "mastermind",
-        "projectPath": "D:\\C#\\ConsoleApp2\\mastermind\\mastermind.csproj",
+        "projectPath": "D:\\P-prog Melly\\mastermind\\mastermind\\mastermind.csproj",
         "packagesPath": "C:\\Users\\px55avd\\.nuget\\packages\\",
-        "outputPath": "D:\\C#\\ConsoleApp2\\mastermind\\obj\\",
+        "outputPath": "D:\\P-prog Melly\\mastermind\\mastermind\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "iKpP6qSU6wq9W+RvPMyUMr0+UqVnljclz9Bq4va61XnKjPow7/F4KX6c+RobNlJapRkuHpM8W5tW6XbhGFOcGg==",
+  "dgSpecHash": "Gxk1bAASQQIeDlQ9vtj3c71tvAc5x4MavFwdCCzx6LOnDthPsLm72Ffa8OmxOXo7fdXUAZ6gRIj3AfDu16oeEw==",
   "success": true,
-  "projectFilePath": "D:\\C#\\ConsoleApp2\\mastermind\\mastermind.csproj",
+  "projectFilePath": "D:\\P-prog Melly\\mastermind\\mastermind\\mastermind.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

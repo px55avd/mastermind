@@ -39,10 +39,15 @@ class Program
         Console.WriteLine("Entrez votre proposition en utilisant les premières lettres des couleurs (par exemple, RGBO) :");
 
         // Générez un code secret aléatoire (4 couleurs).
-        Random random = new Random(); 
-        List<char> codeSecret = Enumerable.Range(0, 4)
-            .Select(_ => "RBGYOPV"[random.Next(7)])
-            .ToList();
+        Random random = new Random();
+        List<char> codeSecret = new List<char>();
+
+        for (int i = 0; i < 4; i++)
+        {
+            int randomNumber = random.Next(7);
+            char couleur = "RBGYOPV"[randomNumber];
+            codeSecret.Add(couleur);
+        }
 
         int tentative = 1;
         bool codeDevine = false;
@@ -56,7 +61,6 @@ class Program
             {
                 List<char> propositionList = proposition.ToList();
 
-                // Vérifiez si la proposition est correcte.
                 int couleursCorrectesBienPlacees = 0;
                 int couleursCorrectesMalPlacees = 0;
 
@@ -65,15 +69,17 @@ class Program
                     if (propositionList[i] == codeSecret[i])
                     {
                         couleursCorrectesBienPlacees++;
-                        propositionList[i] = ' '; // Marquer les couleurs déjà validées.
+                        propositionList[i] = ' ';
                     }
                 }
 
                 for (int i = 0; i < 4; i++)
                 {
-                    if (propositionList[i] != ' ' && codeSecret.Contains(propositionList[i]))
+                    int index = propositionList.IndexOf(codeSecret[i]);
+                    if (index != -1)
                     {
                         couleursCorrectesMalPlacees++;
+                        propositionList[index] = ' ';
                     }
                 }
 
@@ -105,6 +111,7 @@ class Program
         Console.ReadKey();
     }
 }
+
 
 
 
