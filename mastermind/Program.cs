@@ -38,7 +38,6 @@ class Program
         Console.WriteLine("Les couleurs possibles sont : R (Rouge), B (Bleu), G (Vert), Y (Jaune), O (Orange), P (Rose), V (Violet)");
         Console.WriteLine("Entrez votre proposition en utilisant les premières lettres des couleurs (par exemple, RGBO) :");
 
-        // Générez un code secret aléatoire (4 couleurs).
         Random random = new Random();
         List<char> codeSecret = new List<char>();
 
@@ -55,47 +54,26 @@ class Program
         while (tentative <= 10 && !codeDevine)
         {
             Console.Write($"Tentative {tentative}: ");
-            string proposition = Console.ReadLine().ToUpper(); // Convertir en majuscules pour simplifier la comparaison.
+            string proposition = Console.ReadLine().ToUpper();
 
-            if (proposition.Length == 4 && proposition.All(char.IsLetter))
-            {
-                List<char> propositionList = proposition.ToList();
-
-                int couleursCorrectesBienPlacees = 0;
-                int couleursCorrectesMalPlacees = 0;
-
-                for (int i = 0; i < 4; i++)
-                {
-                    if (propositionList[i] == codeSecret[i])
-                    {
-                        couleursCorrectesBienPlacees++;
-                        propositionList[i] = ' ';
-                    }
-                }
-
-                for (int i = 0; i < 4; i++)
-                {
-                    int index = propositionList.IndexOf(codeSecret[i]);
-                    if (index != -1)
-                    {
-                        couleursCorrectesMalPlacees++;
-                        propositionList[index] = ' ';
-                    }
-                }
-
-                Console.WriteLine($"Couleurs correctes et bien placées : {couleursCorrectesBienPlacees}");
-                Console.WriteLine($"Couleurs correctes mais mal placées : {couleursCorrectesMalPlacees}");
-
-                if (couleursCorrectesBienPlacees == 4)
-                {
-                    codeDevine = true;
-                }
-            }
-            else
+            if (proposition.Length != 4 || !proposition.All(char.IsLetter))
             {
                 Console.WriteLine("La proposition n'est pas valide. Assurez-vous qu'elle comporte 4 lettres parmi les couleurs disponibles.");
+                tentative++;
+                continue;
             }
 
+            List<char> propositionList = proposition.ToList();
+
+            int couleursCorrectesBienPlacees = propositionList.Where((c, i) => c == codeSecret[i]).Count();
+
+            int couleursCorrectesMalPlacees = propositionList.Intersect(codeSecret).Count() - couleursCorrectesBienPlacees;
+            couleursCorrectesMalPlacees = Math.Max(couleursCorrectesMalPlacees, 0);
+
+            Console.WriteLine($"Couleurs correctes et bien placées : {couleursCorrectesBienPlacees}");
+            Console.WriteLine($"Couleurs correctes mais mal placées : {couleursCorrectesMalPlacees}");
+
+            codeDevine = couleursCorrectesBienPlacees == 4;
             tentative++;
         }
 
