@@ -24,6 +24,7 @@ class Program
             Console.WriteLine("Entrez votre proposition en utilisant les premières lettres des couleurs.");
             Console.WriteLine("");
             Console.WriteLine("Voici un exemple, (RGBO) :");
+            
 
             // Générez un code secret aléatoire (4 couleurs) avec répétition autorisée.
             Random random = new Random();
@@ -35,6 +36,8 @@ class Program
                 char couleur = "RBGYOPV"[randomNumber];
                 codeSecret.Add(couleur);
             }
+
+            Console.WriteLine(String.Join("", codeSecret));
 
             int tentative = 1;
             bool codeDevine = false;
@@ -59,6 +62,11 @@ class Program
                 int couleursCorrectesBienPlacees = 0;
                 int couleursCorrectesMalPlacees = 0;
 
+
+                // Créez une copie de la liste des couleurs possibles.
+                List<char> couleursPossiblesCopie = new List<char>(couleursPossibles);
+
+
                 for (int i = 0; i < 4; i++)
                 {
                     char couleur = propositionList[i];
@@ -66,16 +74,18 @@ class Program
                     if (couleur == codeSecret[i])
                     {
                         couleursCorrectesBienPlacees++;
+                        couleursPossiblesCopie.Remove(couleur);
+
                     }
+
                     else
                     {
-                        // Créez une copie de la liste des couleurs possibles.
-                        List<char> couleursPossiblesCopie = new List<char>(couleursPossibles);
 
-                        if (couleursPossiblesCopie.Contains(couleur))
+
+                        if (couleursPossibles.Contains(couleur))
                         {
                             couleursCorrectesMalPlacees++;
-                            couleursPossiblesCopie.Remove(couleur);
+
                         }
                     }
                 }
