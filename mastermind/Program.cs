@@ -1,5 +1,4 @@
-﻿
-///**************************************************************************************
+﻿///**************************************************************************************
 ///ETML
 ///Auteur : Omar Egal Ahmed
 ///Date : 01.09.2023
@@ -16,102 +15,106 @@ class Program
         do
         {
             Console.WriteLine("Bienvenue dans le jeu Mastermind !");
-            Console.WriteLine("");
+            Console.WriteLine();
             Console.WriteLine("Le code secret consiste en une séquence de couleurs.");
-            Console.WriteLine("");
+            Console.WriteLine();
             Console.WriteLine("Les couleurs possibles sont : R (Rouge), B (Bleu), G (Vert), Y (Jaune), O (Orange), P (Rose), V (Violet)");
-            Console.WriteLine("");
+            Console.WriteLine();
             Console.WriteLine("Entrez votre proposition en utilisant les premières lettres des couleurs.");
-            Console.WriteLine("");
-            Console.WriteLine("Voici un exemple, (RGBO) :");
-            
 
-            // Générez un code secret aléatoire (4 couleurs) avec répétition autorisée.
+            // Initialisez le générateur de nombres aléatoires.
             Random random = new Random();
-            List<char> codeSecret = new List<char>();
+            List<char> secretCode = new List<char>();
 
+            // Générez un code secret aléatoire (4 couleurs).
             for (int i = 0; i < 4; i++)
+                secretCode.Add("RBGYOPV"[random.Next(7)]);
+
+            int attempts = 1;
+            bool codeGuessed = false;
+
+
+            Console.WriteLine();
+            Console.WriteLine("Désolé, vous n'avez pas réussi à deviner le code secret. Il était : " + string.Join("", secretCode));
+
+            // La boucle principale où les joueurs font leurs tentatives.
+            while (attempts <= 10 && !codeGuessed)
             {
-                int randomNumber = random.Next(7);
-                char couleur = "RBGYOPV"[randomNumber];
-                codeSecret.Add(couleur);
-            }
+                Console.WriteLine();
+                Console.Write($"Tentative {attempts}: ");
+                string guess = Console.ReadLine().ToUpper();
 
-            Console.WriteLine(String.Join("", codeSecret));
-
-            int tentative = 1;
-            bool codeDevine = false;
-
-            while (tentative <= 10 && !codeDevine)
-            {
-                Console.WriteLine("");
-                Console.Write($"Tentative {tentative}: ");
-                string proposition = Console.ReadLine().ToUpper();  // Convertir en majuscules pour simplifier la comparaison.
-
-                if (proposition.Length != 4 || !proposition.All(char.IsLetter))
+                // Vérifiez si la proposition est valide.
+                if (guess.Length != 4 || !guess.All(char.IsLetter) || guess.Any(c => "RBGYOPV".IndexOf(c) == -1))
                 {
-                    Console.WriteLine("");
-                    Console.WriteLine("La proposition n'est pas valide. Assurez-vous qu'elle comporte 4 lettres parmi les couleurs disponibles.");
-                    tentative++;
+                    Console.WriteLine();
+                    Console.WriteLine("La proposition n'est pas valide. Assurez-vous qu'elle comporte 4 lettres parmi les couleurs disponibles (R, B, G, Y, O, P, V).");
+                    attempts++;
                     continue;
                 }
 
-                List<char> propositionList = proposition.ToList();
-                List<char> couleursPossibles = new List<char>("RBGYOPV");
+                int correctlyPlaced = 0;
+                int misplaced = 0;
 
-                int couleursCorrectesBienPlacees = 0;
-                int couleursCorrectesMalPlacees = 0;
+                // Créez des copies de la séquence secrète et de la proposition pour éviter les modifications indésirables.
+                List<char> secretCopy = new List<char>(secretCode);
+                List<char> guessCopy = new List<char>(guess);
 
-
-                // Créez une copie de la liste des couleurs possibles.
-                List<char> couleursPossiblesCopie = new List<char>(couleursPossibles);
-
-
+                // Vérifiez les couleurs correctement placées.
                 for (int i = 0; i < 4; i++)
                 {
-                    char couleur = propositionList[i];
-
-                    if (couleur == codeSecret[i])
+                    if (guessCopy[i] == secretCopy[i])
                     {
-                        couleursCorrectesBienPlacees++;
-                        couleursPossiblesCopie.Remove(couleur);
-
+                        correctlyPlaced++;
+                        // Marquez les couleurs déjà validées.
+                        secretCopy[i] = ' ';
+                        guessCopy[i] = ' ';
                     }
+                }
 
-                    else
+                // Vérifiez les couleurs mal placées.
+                for (int i = 0; i < 4; i++)
+                {
+                    if (guessCopy[i] != ' ')
                     {
-
-
-                        if (couleursPossibles.Contains(couleur))
+                        for (int j = 0; j < secretCopy.Count; j++)
                         {
-                            couleursCorrectesMalPlacees++;
-
+                            if (guessCopy[i] == secretCopy[j])
+                            {
+                                misplaced++;
+                                // Marquez les couleurs déjà validées.
+                                secretCopy[j] = ' ';
+                                break;
+                            }
                         }
                     }
                 }
-                Console.WriteLine("");
-                Console.WriteLine($"Couleurs correctes et bien placées : {couleursCorrectesBienPlacees}");
-                Console.WriteLine($"Couleurs correctes mais mal placées : {couleursCorrectesMalPlacees}");
 
-                codeDevine = couleursCorrectesBienPlacees == 4;
-                tentative++;
+                Console.WriteLine();
+                Console.WriteLine($"Couleurs correctes et bien placées : {correctlyPlaced}");
+                Console.WriteLine($"Couleurs correctes mais mal placées : {misplaced}");
+
+                // Vérifiez si le code a été deviné.
+                codeGuessed = correctlyPlaced == 4;
+                attempts++;
             }
-            Console.WriteLine("");
-            if (codeDevine)
+
+            // Affichez le résultat final.
+            if (codeGuessed)
             {
+                Console.WriteLine();
                 Console.WriteLine("Félicitations ! Vous avez deviné le code secret !");
             }
             else
             {
-                Console.WriteLine("Désolé, vous n'avez pas réussi à deviner le code secret. Il était : " + string.Join("", codeSecret));
+                Console.WriteLine();
+                Console.WriteLine("Désolé, vous n'avez pas réussi à deviner le code secret. Il était : " + string.Join("", secretCode));
             }
 
             Console.WriteLine("Voulez-vous ré-essayer ? [o/O]");
         } while (Console.ReadLine().ToUpper() == "O");
-
     }
 }
-
 
 
 
