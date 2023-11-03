@@ -33,10 +33,6 @@ class Program
             int attempts = 1;
             bool codeGuessed = false;
 
-
-            Console.WriteLine();
-            Console.WriteLine("Désolé, vous n'avez pas réussi à deviner le code secret. Il était : " + string.Join("", secretCode));
-
             // La boucle principale où les joueurs font leurs tentatives.
             while (attempts <= 10 && !codeGuessed)
             {
