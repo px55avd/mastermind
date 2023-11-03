@@ -2,7 +2,7 @@
 ///ETML
 ///Auteur : Omar Egal Ahmed
 ///Date : 01.09.2023
-///Description : Création d'un programme du jeu Mastermind en C#. 
+///Description : Création d'un programme de type jeu en C#: Mastermind. 
 ///**************************************************************************************
 using System;
 using System.Collections.Generic;
@@ -22,11 +22,11 @@ class Program
             Console.WriteLine();
             Console.WriteLine("Entrez votre proposition en utilisant les premières lettres des couleurs.");
 
-            // Initialisez le générateur de nombres aléatoires.
+            // Initialisation du générateur de nombres aléatoires.
             Random random = new Random();
             List<char> secretCode = new List<char>();
 
-            // Générez un code secret aléatoire (4 couleurs).
+            // Génération d'un code secret aléatoire (4 couleurs).
             for (int i = 0; i < 4; i++)
                 secretCode.Add("RBGYOPV"[random.Next(7)]);
 
@@ -44,7 +44,7 @@ class Program
                 Console.Write($"Tentative {attempts}: ");
                 string guess = Console.ReadLine().ToUpper();
 
-                // Vérifiez si la proposition est valide.
+                // Vérification de la proposition est valide.
                 if (guess.Length != 4 || !guess.All(char.IsLetter) || guess.Any(c => "RBGYOPV".IndexOf(c) == -1))
                 {
                     Console.WriteLine();
@@ -56,23 +56,23 @@ class Program
                 int correctlyPlaced = 0;
                 int misplaced = 0;
 
-                // Créez des copies de la séquence secrète et de la proposition pour éviter les modifications indésirables.
+                // Création des copies de la séquence secrète et de la proposition pour éviter les modifications indésirables.
                 List<char> secretCopy = new List<char>(secretCode);
                 List<char> guessCopy = new List<char>(guess);
 
-                // Vérifiez les couleurs correctement placées.
+                // Vérification des couleurs correctement placées.
                 for (int i = 0; i < 4; i++)
                 {
                     if (guessCopy[i] == secretCopy[i])
                     {
                         correctlyPlaced++;
-                        // Marquez les couleurs déjà validées.
+                        // Marquage des couleurs déjà validées.
                         secretCopy[i] = ' ';
                         guessCopy[i] = ' ';
                     }
                 }
 
-                // Vérifiez les couleurs mal placées.
+                // Vérificaton des couleurs mal placées.
                 for (int i = 0; i < 4; i++)
                 {
                     if (guessCopy[i] != ' ')
@@ -82,8 +82,7 @@ class Program
                             if (guessCopy[i] == secretCopy[j])
                             {
                                 misplaced++;
-                                // Marquez les couleurs déjà validées.
-                                secretCopy[j] = ' ';
+                                secretCopy[j] = ' ';// Marquage des couleurs déjà validées.
                                 break;
                             }
                         }
@@ -94,12 +93,12 @@ class Program
                 Console.WriteLine($"Couleurs correctes et bien placées : {correctlyPlaced}");
                 Console.WriteLine($"Couleurs correctes mais mal placées : {misplaced}");
 
-                // Vérifiez si le code a été deviné.
+                // Vérification si le code a été deviné.
                 codeGuessed = correctlyPlaced == 4;
                 attempts++;
             }
 
-            // Affichez le résultat final.
+            // Affichage du résultat final.
             if (codeGuessed)
             {
                 Console.WriteLine();
