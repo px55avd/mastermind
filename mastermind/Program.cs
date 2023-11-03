@@ -28,7 +28,10 @@ class Program
 
             // Génération d'un code secret aléatoire (4 couleurs).
             for (int i = 0; i < 4; i++)
-                secretCode.Add("RBGYOPV"[random.Next(7)]);
+            {
+              secretCode.Add("RBGYOPV"[random.Next(7)]);
+            }
+                
 
             int attempts = 1;
             bool codeGuessed = false;
